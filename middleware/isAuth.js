@@ -8,7 +8,6 @@ module.exports = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, config.jwtKey);
-    console.log(decoded);
     req.payload = decoded.user;
   } catch (e) {
     if (e instanceof jwt.JsonWebTokenError) {

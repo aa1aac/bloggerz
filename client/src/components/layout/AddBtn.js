@@ -1,15 +1,17 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 const AddBtn = () => {
   return (
     <div>
       <div className="fixed-action-btn">
-        <a
+        <Link
           className="btn-floating btn-large green accent-3 modal-trigger"
-          data-target="add-blog"
+          to="dashboard/newPost"
         >
           <i className="large material-icons">mode_edit</i>
-        </a>
+        </Link>
       </div>
     </div>
   );

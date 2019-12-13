@@ -23,6 +23,6 @@ router.put("/:id", isAuth, BlogController.editBlog);
 // request DELETE delete blog
 // private
 // route api/blog/:id
-router.delete("/:delete", isAuth, BlogController.deleteBlog);
+router.delete("/:id", isAuth, BlogController.deleteBlog);
 
 module.exports = router;
