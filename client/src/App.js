@@ -16,6 +16,7 @@ import AddBlog from "./Pages/AddBlog";
 import Index from "./Pages/Index";
 import Login from "./components/Authentication/Login";
 import Signup from "./components/Authentication/Signup";
+import DisplayBlog from "./Pages/DisplayBlog";
 
 function App() {
   useEffect(() => {
@@ -29,24 +30,19 @@ function App() {
           <NavBar />
           <Switch>
             {/* routing path */}
-            <Route path="/" exact>
-              <Index />
-            </Route>
-            <Route path="/login" exact>
-              <Login />
-            </Route>
-            <Route path="/signup" exact>
-              <Signup />
-            </Route>
-            <Route path="/dashboard" exact>
-              <Dashboard />
-            </Route>
-            <Route path="/dashboard/newPost" exact>
-              <AddBlog />
-            </Route>
-            <Route path="/dashboard/editPost/:id" exact>
-              <EditBlog />
-            </Route>
+            <Route path="/" exact component={Index} />
+
+            <Route path="/login" component={Login} exact />
+
+            <Route path="/signup" exact component={Signup} />
+
+            <Route path="/dashboard" exact component={Dashboard} />
+
+            <Route path="/dashboard/newPost" exact component={AddBlog} />
+
+            <Route path="/dashboard/editPost/:id" component={EditBlog} />
+
+            <Route path="/blog/:id" component={DisplayBlog} />
           </Switch>
         </Router>
       </BlogState>

@@ -8,8 +8,6 @@ const NavBar = () => {
 
   useEffect(() => {
     userContext.getUser();
-
-    console.log(userContext.user);
   },[]);
 
   const UserSpecific = () => {
@@ -18,7 +16,7 @@ const NavBar = () => {
         <li key="1">
           {" "}
           {/* todo logout */}
-          <a href="#!" className="black-text">
+          <a href="/logout" className="black-text">
             Logout
           </a>{" "}
         </li>,

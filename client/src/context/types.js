@@ -5,3 +5,4 @@ export const POST_BLOG = "POST_BLOG";
 export const EDIT_BLOG = "EDIT_BLOGS";
 export const DISPLAY_ALERT = "DISPLAY_ALERT";
 export const CLEAR_ALERT = "CLEAR_ALERT";
+export const GET_USER_SPECIFIFC_BLOG = "GET_USER_SPECIFIC_BLOG";

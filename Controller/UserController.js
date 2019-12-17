@@ -69,7 +69,8 @@ const login = async (req, res) => {
 
 const getUser = (req, res) => {
   // todo get current user and check
-  return res.json({ user: { id: req.payload.id } });
+  
+  res.json({ user: { id: req.payload.id } });
 };
 
 module.exports = { signup, login, getUser };

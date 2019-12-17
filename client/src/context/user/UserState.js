@@ -33,13 +33,13 @@ const UserState = props => {
   const getUser = async () => {
     try {
       const res = await axios.get("user");
-      
+
       dispatch({
         type: GET_CURRENT_USER,
         payload: res.data.user.id
       });
 
-      // M.toast({ html: res.data.msg });
+      console.log(res.data);
     } catch (error) {
       console.log(error);
       // todo msg

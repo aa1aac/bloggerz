@@ -17,17 +17,18 @@ const AddBlog = () => {
     <div className="container">
       <h5 className="text-accent-3 green-text center-align">Add new Post</h5>
       <div className="row">
-        <form className="col s12" onSubmit={onSend} >
-        <div className="input-field col s12">
-          <input 
-            id="title" 
-            type="text" 
-            className="validate" 
-            required 
-            value={title} 
-            onChange={e => setTitle(e.target.value)} />
-          <label htmlFor="title">Title</label>
-        </div>
+        <form className="col s12" onSubmit={onSend}>
+          <div className="input-field col s12">
+            <input
+              id="title"
+              type="text"
+              className="validate"
+              required
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+            />
+            <label htmlFor="title">Title</label>
+          </div>
 
           <div className="row">
             <div className="input-field col s12">
@@ -56,7 +57,11 @@ const AddBlog = () => {
               <label htmlFor="Content">Content</label>
             </div>
           </div>
-          <button className="btn waves-effect waves-light green accent-4" type="submit" name="action">
+          <button
+            className="btn waves-effect waves-light green accent-4"
+            type="submit"
+            name="action"
+          >
             <i className="material-icons right">send</i>
           </button>
         </form>
