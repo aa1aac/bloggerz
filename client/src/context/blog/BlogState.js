@@ -23,7 +23,11 @@ export const BlogState = props => {
   const postBlog = async (title, lead, content) => {
     // todo post the blog
 
-    const res = await axios.post("/blog", { title, lead, content });
+    const res = await axios.post("/blog", {
+      title,
+      lead,
+      content: content.split("\n")
+    });
     M.toast({ html: res.data.msg });
   };
 
@@ -38,7 +42,7 @@ export const BlogState = props => {
   const getSpecific = async () => {
     // todo get user specific blog
     const res = await axios.get("/blog/specific");
-    
+
     dispatch({ type: GET_USER_SPECIFIFC_BLOG, payload: res.data.blogs });
   };
 

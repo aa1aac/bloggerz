@@ -79,7 +79,6 @@ const getSpecificBlog = (req, res) => {
       res.json(blog);
     })
     .catch(error => {
-      console.log(error);
       res.status(404).json({ msg: "no such page found" });
     });
 };

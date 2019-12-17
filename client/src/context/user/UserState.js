@@ -32,7 +32,7 @@ const UserState = props => {
 
   const getUser = async () => {
     try {
-      const res = await axios.get("user");
+      const res = await axios.get("/user");
 
       dispatch({
         type: GET_CURRENT_USER,
