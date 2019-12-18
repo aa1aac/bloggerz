@@ -51,6 +51,11 @@ export const BlogState = props => {
     // todo edit the blogs
   };
 
+  const deleteBlog = async id => {
+    // todo delete blog
+    const res = await axios.delete(`/blog/${id}`);
+    console.log(res);
+  };
   return (
     <BlogContext.Provider
       value={{
@@ -60,7 +65,8 @@ export const BlogState = props => {
         postBlog,
         getBlog,
         editBlog,
-        getSpecific
+        getSpecific,
+        deleteBlog
       }}
     >
       {props.children}

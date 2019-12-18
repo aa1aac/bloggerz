@@ -69,7 +69,28 @@ const editBlog = (req, res) => {
 
 const deleteBlog = (req, res) => {
   // todo delete blogs
-  res.json("deleteBlog");
+  // Blog.findById(req.params.id)
+  //   .then(blog => {
+  //     if (req.payload.id === blog._author) {
+  //       Blog.findByIdAndDelete(req.params.id).then(result => {
+  //         return res.json({ msg: "deleted" });
+  //       });
+  //     } else {
+  //       return res.status(401).json({ msg: "action unauthorized" });
+  //     }
+  //   })
+  //   .catch(error => {
+  //     res.status(500);
+  //     console.log(error);
+  //   });
+  Blog.findOneAndDelete({ _author: req.payload.id, _id: req.params.id })
+    .then(result => {
+      res.json({ msg: "deleted" });
+    })
+    .catch(err => {
+      res.status(501);
+      console.log(err);
+    });
 };
 
 const getSpecificBlog = (req, res) => {

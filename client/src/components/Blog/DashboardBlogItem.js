@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import BlogContext from "../../context/blog/BlogContext";
+
 const DashboardBlogItem = props => {
+  const blogContext = useContext(BlogContext);
+
+  const onDelete = () => {
+    blogContext.deleteBlog(props.id);
+  };
+
   return (
-    <Link to={`blog/${props.id}`} key={props.id}>
+    <div>
       <div className="col s12 l6 m12">
         <div className="card  darken-1">
           <div className="card-content">
-            <span className="card-title h4">{props.title}</span>
+            <Link to={`blog/${props.id}`}>
+              <span className="card-title h4">{props.title}</span>
+            </Link>
             <hr />
             <p className="truncate">{props.lead}</p>
+            <br />
+            <button
+              onClick={onDelete}
+              className="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              <i className="material-icons">delete_forever</i>
+            </button>{" "}
+            <button
+              className="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              <i className="material-icons">edit</i>
+            </button>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
