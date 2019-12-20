@@ -29,13 +29,14 @@ const DashboardBlogItem = props => {
             >
               <i className="material-icons">delete_forever</i>
             </button>{" "}
-            <button
+            <Link
               className="btn waves-effect waves-light"
               type="submit"
               name="action"
+              to={`dashboard/edit-blog/${props.id}`}
             >
               <i className="material-icons">edit</i>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

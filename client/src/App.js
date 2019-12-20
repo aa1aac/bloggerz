@@ -43,6 +43,8 @@ function App() {
             <Route path="/dashboard/editPost/:id" component={EditBlog} />
 
             <Route path="/blog/:id" component={DisplayBlog} />
+
+            <Route path="/dashboard/edit-blog/:id" component={EditBlog} />
           </Switch>
         </Router>
       </BlogState>

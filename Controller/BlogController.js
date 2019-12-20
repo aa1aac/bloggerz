@@ -64,25 +64,27 @@ const postBlog = async (req, res) => {
 
 const editBlog = (req, res) => {
   // todo edit blogs
-  res.json("edit blogs");
+  Blog.findById(req.params.id)
+    .then(async blog => {
+      const { title, lead, content } = req.body;
+
+      if (!title && !lead && !content)
+        return res.json({ msg: "none of th efields can be empty" });
+
+      blog.title = title;
+      blog.lead = lead;
+      blog.content = content;
+
+      await blog.save();
+      return res.json({ msg: "blog successfully saved" });
+    })
+    .catch(err => {
+      console.log(err);
+      res.json({ msg: "some error occured saving" });
+    });
 };
 
 const deleteBlog = (req, res) => {
-  // todo delete blogs
-  // Blog.findById(req.params.id)
-  //   .then(blog => {
-  //     if (req.payload.id === blog._author) {
-  //       Blog.findByIdAndDelete(req.params.id).then(result => {
-  //         return res.json({ msg: "deleted" });
-  //       });
-  //     } else {
-  //       return res.status(401).json({ msg: "action unauthorized" });
-  //     }
-  //   })
-  //   .catch(error => {
-  //     res.status(500);
-  //     console.log(error);
-  //   });
   Blog.findOneAndDelete({ _author: req.payload.id, _id: req.params.id })
     .then(result => {
       res.json({ msg: "deleted" });

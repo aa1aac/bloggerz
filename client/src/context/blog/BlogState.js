@@ -33,7 +33,7 @@ export const BlogState = props => {
 
   // get blog functionality
   const getBlog = async () => {
-    // todo get the current blogs
+    // get the current blogs
     const res = await axios.get("/blog");
     dispatch({ type: GET_BLOGS, payload: res.data.blogs });
   };
@@ -47,8 +47,16 @@ export const BlogState = props => {
   };
 
   // edit blogs
-  const editBlog = () => {
+  const editBlog = async (title, lead, content,id) => {
     // todo edit the blogs
+    console.log("editBlog");
+    const res = await axios.put(`/blog/${id}`, {
+      title,
+      lead,
+      content: content.split("\n")
+    });
+    console.log(res);
+    M.toast({ html: res.data.msg });
   };
 
   const deleteBlog = async id => {
