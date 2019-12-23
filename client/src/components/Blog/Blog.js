@@ -15,6 +15,7 @@ const Blog = () => {
         {blogContext.blogs.map((blog, index, blogs) => {
           return (
             <BlogItem
+              key={index+ blog._id}
               title={blog.title}
               lead={blog.lead}
               content={blog.content}

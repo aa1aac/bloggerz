@@ -4,7 +4,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 
 import UserReducer from "./UserReducer";
 import UserContext from "./UserContext";
-import { LOGIN_USER, GET_CURRENT_USER } from "../types";
+import { LOGIN_USER, GET_CURRENT_USER, LOGOUT } from "../types";
 
 const UserState = props => {
   const initialState = {
@@ -38,13 +38,15 @@ const UserState = props => {
         type: GET_CURRENT_USER,
         payload: res.data.user.id
       });
+    } catch (error) {}
+  };
 
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-      // todo msg
-      M.toast({ html: "Oops! some error occured" });
-    }
+  const logout = () => {
+    const date = new Date(Date.now() - 10000);
+
+    // console.log(document.cookie);
+    document.cookie = `token=0; expires=${date}`;
+    dispatch({ type: LOGOUT });
   };
 
   return (
@@ -53,7 +55,8 @@ const UserState = props => {
         user: state.user,
         isLoggedin: state.isLoggedin,
         login,
-        getUser
+        getUser,
+        logout
         // other functions
       }}
     >

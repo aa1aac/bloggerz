@@ -6,9 +6,12 @@ import UserContext from "../../context/user/UserContext";
 const NavBar = () => {
   const userContext = useContext(UserContext);
 
+  const onLogout = () => {
+    userContext.logout();
+  };
   useEffect(() => {
     userContext.getUser();
-  },[]);
+  }, []);
 
   const UserSpecific = () => {
     if (userContext.user) {
@@ -16,13 +19,19 @@ const NavBar = () => {
         <li key="1">
           {" "}
           {/* todo logout */}
-          <a href="/logout" className="black-text">
+          <a
+            onClick={onLogout}
+            className="black-text waves-effect waves-teal btn-flat"
+          >
             Logout
           </a>{" "}
         </li>,
         <li key="2">
           {" "}
-          <Link to="/dashboard" className="black-text">
+          <Link
+            to="/dashboard"
+            className="black-text waves-effect waves-teal btn-flat"
+          >
             Dashboard
           </Link>{" "}
         </li>

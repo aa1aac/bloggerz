@@ -8,6 +8,7 @@ const DashboardBlogItem = props => {
 
   const onDelete = () => {
     blogContext.deleteBlog(props.id);
+    blogContext.getSpecific()
   };
 
   return (

@@ -47,7 +47,7 @@ const postBlog = async (req, res) => {
 
   const { title, lead, content } = req.body;
   if (!title && !lead && !content)
-    return res.json({ msg: "none of th efields can be empty" });
+    return res.json({ msg: "none of the fields can be empty" });
   try {
     const blog = await new Blog({
       title,
@@ -69,7 +69,7 @@ const editBlog = (req, res) => {
       const { title, lead, content } = req.body;
 
       if (!title && !lead && !content)
-        return res.json({ msg: "none of th efields can be empty" });
+        return res.json({ msg: "none of the fields can be empty" });
 
       blog.title = title;
       blog.lead = lead;
@@ -99,6 +99,7 @@ const getSpecificBlog = (req, res) => {
   Blog.findById(req.params.id)
     .then(blog => {
       if (!blog) return res.status(404);
+
       res.json(blog);
     })
     .catch(error => {
