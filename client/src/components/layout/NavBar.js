@@ -18,7 +18,7 @@ const NavBar = () => {
       return [
         <li key="1">
           {" "}
-          {/* todo logout */}
+          
           <a
             onClick={onLogout}
             className="black-text waves-effect waves-teal btn-flat"

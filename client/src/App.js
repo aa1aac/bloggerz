@@ -17,6 +17,8 @@ import Index from "./Pages/Index";
 import Login from "./components/Authentication/Login";
 import Signup from "./components/Authentication/Signup";
 import DisplayBlog from "./Pages/DisplayBlog";
+import PrivateRoute from "./components/Routing/Private";
+import NonPrivateRoute from "./components/Routing/NonPrivate";
 
 function App() {
   useEffect(() => {
@@ -32,15 +34,15 @@ function App() {
             {/* routing path */}
             <Route path="/" exact component={Index} />
 
-            <Route path="/login" component={Login} exact />
+            <NonPrivateRoute path="/login" component={Login} exact />
 
             <Route path="/signup" exact component={Signup} />
 
-            <Route path="/dashboard" exact component={Dashboard} />
+            <PrivateRoute path="/dashboard" exact component={Dashboard} />
 
-            <Route path="/dashboard/newPost" exact component={AddBlog} />
+            <PrivateRoute path="/dashboard/newPost" exact component={AddBlog} />
 
-            <Route path="/dashboard/editPost/:id" component={EditBlog} />
+            {/* <PrivateRoute path="/dashboard/editPost/:id" component={EditBlog} /> */}
 
             <Route path="/blog/:id" component={DisplayBlog} />
 
