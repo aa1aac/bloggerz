@@ -10,14 +10,10 @@ const router = express.Router();
 // route api/response/:blogid
 router.post("/:blogId", isAuth, ResponseController.addResponse);
 
-// route private
-// method PUT
-// route api/response/:responsrid
-router.put("/:responseId", isAuth, ResponseController.editResponse);
 
 // route public 
 // method GET
 // route api/response/:blogid
-router.get('/:blogId')  // TODO get response function and controller
+router.get('/:blogId', ResponseController.getResponse); // TODO get response function and controller
 
 module.exports = router;

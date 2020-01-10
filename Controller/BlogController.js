@@ -99,8 +99,11 @@ const getSpecificBlog = (req, res) => {
   Blog.findById(req.params.id)
     .then(blog => {
       if (!blog) return res.status(404);
-
-      res.json(blog);
+      console.log(blog._author);
+      User.findOne({ _id: blog._author }, " name _id").then(user => {
+        
+        res.json({ blog, author: user });
+      });
     })
     .catch(error => {
       res.status(404).json({ msg: "no such page found" });

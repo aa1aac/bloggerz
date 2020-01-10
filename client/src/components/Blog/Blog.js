@@ -15,6 +15,7 @@ const Blog = () => {
         {blogContext.blogs.map((blog, index, blogs) => {
           return (
             <BlogItem
+            className="scale-transition"
               key={index+ blog._id}
               title={blog.title}
               lead={blog.lead}

@@ -4,7 +4,7 @@ import AddBtn from "../components/layout/AddBtn";
 import BlogContext from "../context/blog/BlogContext";
 import DashboardBlogItem from "../components/Blog/DashboardBlogItem";
 
-export const Dashboard = () => {
+export const Dashboard = () => {  
   const blogContext = useContext(BlogContext);
   useEffect(() => {
     blogContext.getSpecific();
@@ -24,6 +24,7 @@ export const Dashboard = () => {
               lead={blog.lead}
               content={blog.content}
               id={blog._id}
+              className="scale-transition"
             />
          
         );

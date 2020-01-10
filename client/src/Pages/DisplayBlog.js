@@ -64,15 +64,18 @@ class DisplayBlog extends Component {
     super(props);
     this.state = {
       blog: null,
-      loading: true
+      loading: true,
+      author: null
     };
   }
 
   fetchData = async () => {
     try {
       const res = await axios.get(`/blog/${this.props.match.params.id}`);
-      this.setState({ ...this.state, blog: res.data });
+
+      this.setState({ ...this.state, blog: res.data.blog });
       this.setState({ ...this.state, loading: false });
+      this.setState({ ...this.state, author: res.data.author });
     } catch (error) {
       console.log(error);
     }
@@ -83,9 +86,9 @@ class DisplayBlog extends Component {
   }
 
   render() {
-    if (this.state.blog) {
+    if (this.state.blog && this.state.author) {
       return (
-        <div className="container justify" style={{ textAlign: "justify" }}>
+        <div className="container justify " style={{ textAlign: "justify" }}>
           <h2>{this.state.blog.title}</h2>
           <hr />
           <span className="h5">
@@ -93,10 +96,12 @@ class DisplayBlog extends Component {
             Published on : {this.state.blog.dateCreated}
           </span>
           <hr />
+          <span className="h5"> By: {this.state.author.name}</span>
+          <hr />
           <p className="grey-text h4 hljs-emphasis">{this.state.blog.lead}</p>
 
           <hr />
-          <p>
+          <p className="displayBlog">
             {this.state.blog.content.map((value, index) => {
               return (
                 <span key={index}>
