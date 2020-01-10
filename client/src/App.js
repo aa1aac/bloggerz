@@ -17,6 +17,7 @@ import Index from "./Pages/Index";
 import Login from "./components/Authentication/Login";
 import Signup from "./components/Authentication/Signup";
 import DisplayBlog from "./Pages/DisplayBlog";
+import Response from "./Pages/Response";
 import PrivateRoute from "./components/Routing/Private";
 import NonPrivateRoute from "./components/Routing/NonPrivate";
 
@@ -46,7 +47,12 @@ function App() {
 
             <Route path="/blog/:id" component={DisplayBlog} />
 
-            <Route path="/dashboard/edit-blog/:id" component={EditBlog} />
+            <Route path="/response/:id" component={Response} />
+
+            <PrivateRoute
+              path="/dashboard/edit-blog/:id"
+              component={EditBlog}
+            />
           </Switch>
         </Router>
       </BlogState>

@@ -70,7 +70,7 @@ const editBlog = (req, res) => {
 
       if (!title && !lead && !content)
         return res.json({ msg: "none of the fields can be empty" });
-
+ 
       blog.title = title;
       blog.lead = lead;
       blog.content = content;

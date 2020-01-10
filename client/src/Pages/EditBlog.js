@@ -19,9 +19,10 @@ const EditBlog = props => {
   useEffect(() => {
     const id = props.match.params.id;
     Axios.get(`/blog/${id}`).then(res => {
-      setTitle(res.data.title);
-      setLead(res.data.lead);
-      setContent(res.data.content.join("\n"));
+      setTitle(res.data.blog.title);
+      setLead(res.data.blog.lead);
+      
+      setContent(res.data.blog.content.join("\n"));
     });
   }, []);
 

@@ -20,4 +20,5 @@ const getRespopnse = (req, res) => {
     res.json(responses);
   });
 };
+
 module.exports = { addResponse, getRespopnse };

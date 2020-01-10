@@ -1,63 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
-// const DisplayBlog = () => {
-//   const [blog, setBlog] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   const fetchData = async () => {
-//     try {
-//       const res = await axios.get(`/blog/${this.props.match.params.id}`);
-//       setBlog(res.data);
-//       setLoading(false);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-
-//   if (blog) {
-//     console.log(blog.content);
-//     return (
-//       <div className="container justify" style={{ textAlign: "justify" }}>
-//         <h2>{blog.title}</h2>
-//         <hr />
-//         <span className="h5"> Published on : {blog.dateCreated}</span>
-//         <hr />
-//         <p className="grey-text h4">{blog.lead}</p>
-
-//         <hr />
-//         <p>
-//           {blog.content.map(value => {
-//             return (
-//               <span>
-//                 {value} <br />
-//               </span>
-//             );
-//           })}
-//         </p>
-//       </div>
-//     );
-//   } else if (loading) {
-//     return (
-//       <div className="container">
-//         <div className="progress">
-//           <div className="indeterminate"></div>
-//         </div>
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <div className="container">
-//         <h2>Eror</h2>
-//         Some error occured
-//       </div>
-//     );
-//   }
-// };
+import { Link } from "react-router-dom";
 
 class DisplayBlog extends Component {
   constructor(props) {
@@ -85,6 +28,10 @@ class DisplayBlog extends Component {
     this.fetchData();
   }
 
+  fetchComment = async () => {
+    // todo fetch comment
+    console.log("fetch comment");
+  };
   render() {
     if (this.state.blog && this.state.author) {
       return (
@@ -110,6 +57,19 @@ class DisplayBlog extends Component {
               );
             })}
           </p>
+          {/* response */}
+          <div className="container center-align">
+            <br />
+            <Link
+              className="waves-effect waves-teal btn-flat"
+              to={`/response/${this.props.match.params.id}`}
+            >
+              Response
+              <i className="material-icons">comment</i>
+            </Link>
+
+            <br />
+          </div>
         </div>
       );
     } else if (this.state.loading) {
