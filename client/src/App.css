@@ -6,3 +6,8 @@ body {
   font-family: Montserrat;
   font-size: 1.2em;
 }
+
+hr {
+  margin-top: 1.5em;
+  color: rgb(0, 255, 13);
+}

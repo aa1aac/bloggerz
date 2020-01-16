@@ -8,17 +8,24 @@ class DisplayBlog extends Component {
     this.state = {
       blog: null,
       loading: true,
-      author: null
+      author: null,
+      dateCreated: null
     };
   }
 
   fetchData = async () => {
     try {
       const res = await axios.get(`/blog/${this.props.match.params.id}`);
-
+      const dateCreated = await new Date(
+        res.data.blog.dateCreated
+      ).toDateString();
       this.setState({ ...this.state, blog: res.data.blog });
       this.setState({ ...this.state, loading: false });
       this.setState({ ...this.state, author: res.data.author });
+      this.setState({
+        ...this.state,
+        dateCreated
+      });
     } catch (error) {
       console.log(error);
     }
@@ -37,14 +44,6 @@ class DisplayBlog extends Component {
       return (
         <div className="container justify " style={{ textAlign: "justify" }}>
           <h2>{this.state.blog.title}</h2>
-          <hr />
-          <span className="h5">
-            {" "}
-            Published on : {this.state.blog.dateCreated}
-          </span>
-          <hr />
-          <span className="h5"> By: {this.state.author.name}</span>
-          <hr />
           <p className="grey-text h4 hljs-emphasis">{this.state.blog.lead}</p>
 
           <hr />
@@ -57,11 +56,22 @@ class DisplayBlog extends Component {
               );
             })}
           </p>
+          <hr />
+          <span className="h5"> Published on : {this.state.dateCreated}</span>
+          <br />
+          <br />
+
+          <span className="h5">
+            {" "}
+            <b> Written By</b>: {this.state.author.name}
+          </span>
+          <hr />
+
           {/* response */}
           <div className="container center-align">
             <br />
             <Link
-              className="waves-effect waves-teal btn-flat"
+              className="waves-effect waves-light btn"
               to={`/response/${this.props.match.params.id}`}
             >
               Response
