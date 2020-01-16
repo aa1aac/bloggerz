@@ -3,12 +3,18 @@ const User = require("../models/User");
 
 const addResponse = (req, res) => {
   // post blogId
-  console.log(req.params.blogId);
-  User.findById(req.payload).then(user => {
+  console.log(req.params);
+
+  User.findById(req.payload.id).then(user => {
     const response = new Response({
       responder: user.name,
       response: req.body.response,
-      parent: req.body.blogId
+      parent: req.params.blogId
+    });
+
+    response.save().then(response => {
+      console.log(response);
+      res.json({ msg: "comment successfully added" });
     });
     console.log(response);
   });

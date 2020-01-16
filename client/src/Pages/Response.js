@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 import UserContext from "../context/user/UserContext";
 
@@ -9,12 +10,34 @@ const Response = props => {
   const userContext = useContext(UserContext);
 
   const [comment, setComment] = useState("");
+  const [responses, setResponses] = useState(null);
 
+  useEffect(() => {
+    fetchResponses();
+  }, []);
   const onFormSubmit = async e => {
     e.preventDefault();
-    console.log(props.match.params.id);
-    const res = await axios.post(`/response/${props.match.params.id}`);
-    console.log(res.data);
+    try {
+      const res = await axios.post(`/response/${props.match.params.id}`, {
+        response: comment
+      });
+      console.log(res.data);
+      if (res.data.msg === "comment successfully added") {
+        setComment("");
+        fetchResponses();
+      }
+    } catch (error) {
+      M.toast({ html: "some error occured posting comment" });
+    }
+
+    // todo handle after submit
+  };
+
+  const fetchResponses = async () => {
+    // fetch responses
+    const res = await axios.get(`/response/${props.match.params.id}`);
+
+    setResponses(res.data);
   };
 
   return (
@@ -37,7 +60,6 @@ const Response = props => {
                     required
                     value={comment}
                     onChange={e => {
-                     
                       return setComment(e.target.value);
                     }}
                   />
@@ -58,44 +80,27 @@ const Response = props => {
       ) : (
         <div />
       )}
-
-      <div className="responses">
-        <ul className="collection">
-          <li className="collection-item avatar">
-            <i className="material-icons circle">folder</i>
-            <span className="title">Title</span>
-            <p>
-              First Line <br />
-              Second Line
-            </p>
-            <a href="#!" className="secondary-content">
-              <i className="material-icons">grade</i>
-            </a>
-          </li>
-          <li className="collection-item avatar">
-            <i className="material-icons circle green">insert_chart</i>
-            <span className="title">Title</span>
-            <p>
-              First Line <br />
-              Second Line
-            </p>
-            <a href="#!" className="secondary-content">
-              <i className="material-icons">grade</i>
-            </a>
-          </li>
-          <li className="collection-item avatar">
-            <i className="material-icons circle red">play_arrow</i>
-            <span className="title">Title</span>
-            <p>
-              First Line <br />
-              Second Line
-            </p>
-            <a href="#!" className="secondary-content">
-              <i className="material-icons">grade</i>
-            </a>
-          </li>
-        </ul>
-      </div>
+      {responses ? (
+        <div className="responses">
+          <ul className="collection">
+            {responses.map((value, index, array) => {
+              console.log(value);
+              return (
+                <li className="collection-item avatar" key={index}>
+                  <i className="material-icons circle red">play_arrow</i>
+                  <span className="title">{value.responder}</span>
+                  <p>{value.response}</p>
+                  <a href="#!" className="secondary-content">
+                    <i className="material-icons">grade</i>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ) : (
+        <div> No responses found </div>
+      )}
     </div>
   );
 };
