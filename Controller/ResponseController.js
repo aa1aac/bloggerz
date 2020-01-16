@@ -3,6 +3,7 @@ const User = require("../models/User");
 
 const addResponse = (req, res) => {
   // post blogId
+  console.log(req.params.blogId);
   User.findById(req.payload).then(user => {
     const response = new Response({
       responder: user.name,
@@ -15,10 +16,10 @@ const addResponse = (req, res) => {
   // todo add response
 };
 
-const getRespopnse = (req, res) => {
+const getResponse = (req, res) => {
   Response.find({ parent: req.params.blogId }).then(responses => {
     res.json(responses);
   });
 };
 
-module.exports = { addResponse, getRespopnse };
+module.exports = { addResponse, getResponse };

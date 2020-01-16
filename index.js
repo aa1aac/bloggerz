@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 
 const UserRouter = require("./routes/User");
 const BlogRouter = require("./routes/Blog");
+const ResponseRouter = require("./routes/Response");
 
 const app = express();
 
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || 5000; // variable for port
 
 app.use("/api/user", UserRouter); // routing for user  api/user
 app.use("/api/blog", BlogRouter); // routing for blog  api/blog
+// app.use("/api/response", ResponseRouter); // routing for response api/response
 
 mongoose
   .connect(config.mongoURI, {
