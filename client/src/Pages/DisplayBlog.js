@@ -57,7 +57,7 @@ class DisplayBlog extends Component {
             })}
           </p>
           <hr />
-          <span className="h5"> Published on : {this.state.dateCreated}</span>
+          <span className="h5"> <b >Published on</b> : {this.state.dateCreated}</span>
           <br />
           <br />
 

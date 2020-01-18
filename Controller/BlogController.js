@@ -4,7 +4,7 @@ const User = require("../models/User");
 const getBlogs = (req, res) => {
   // todo get all blogs
   // todo pagination optimization
-  const BLOGS_PER_PAGE = 5;
+  const BLOGS_PER_PAGE = 6;
 
   const page = +req.query.page || 1;
   let totalBlogs;
@@ -97,7 +97,7 @@ const deleteBlog = (req, res) => {
 
 const getSpecificBlog = (req, res) => {
   Blog.findById(req.params.id)
-    .then(blog => {
+    .then(blog => {   
       if (!blog) return res.status(404);
       console.log(blog._author);
       User.findOne({ _id: blog._author }, " name _id").then(user => {

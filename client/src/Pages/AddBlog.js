@@ -13,6 +13,7 @@ const AddBlog = () => {
     e.preventDefault();
     blogContext.postBlog(title, lead, content);
   };
+
   return (
     <div className="container">
       <h5 className="text-accent-3 green-text center-align">Add new Post</h5>

@@ -18,7 +18,6 @@ const NavBar = () => {
       return [
         <li key="1">
           {" "}
-          
           <a
             onClick={onLogout}
             className="black-text waves-effect waves-teal btn-flat"
@@ -52,9 +51,9 @@ const NavBar = () => {
     <div>
       <nav className="grey-text">
         <div className="nav-wrapper grey lighten-5 text-black">
-          <a href="/" className="brand-logo green-text text-accent-3">
+          <Link to="/" className="brand-logo green-text text-accent-3">
             <i className="material-icons">public</i> Bloggerz
-          </a>
+          </Link>
           <a
             href="#"
             data-target="mobile"

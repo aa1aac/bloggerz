@@ -1,5 +1,6 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import axios from "axios";
+
 import M from "materialize-css/dist/js/materialize.min.js";
 
 import BlogReducer from "./BlogReducer";
@@ -13,7 +14,12 @@ export const BlogState = props => {
     blogs: [],
     newBlog: [],
     userSpecific: [],
-    editBlog: ""
+    editBlog: "",
+    hasNextPage: false,
+    hasPreviousPage: false,
+    currentPage: null,
+    nextPage: null,
+    previousPage: null
   };
 
   //  use reducer for accessing state and dispatch function
@@ -35,7 +41,26 @@ export const BlogState = props => {
   const getBlog = async () => {
     // get the current blogs
     const res = await axios.get("/blog");
-    dispatch({ type: GET_BLOGS, payload: res.data.blogs });
+
+    console.log(res.data);
+
+    dispatch({ type: GET_BLOGS, payload: res.data });
+  };
+
+  const getPrevious = async () => {
+    // get the  blogs
+
+    const res = await axios.get(`/blog?page=${state.previousPage}`);
+
+    dispatch({ type: GET_BLOGS, payload: res.data });
+  };
+
+  const getNext = async () => {
+    // get the  blogs
+
+    const res = await axios.get(`/blog?page=${state.nextPage}`);
+
+    dispatch({ type: GET_BLOGS, payload: res.data });
   };
 
   // get user specific blogs
@@ -47,7 +72,7 @@ export const BlogState = props => {
   };
 
   // edit blogs
-  const editBlog = async (title, lead, content,id) => {
+  const editBlog = async (title, lead, content, id) => {
     // todo edit the blogs
     console.log("editBlog");
     const res = await axios.put(`/blog/${id}`, {
@@ -70,11 +95,18 @@ export const BlogState = props => {
         blogs: state.blogs,
         newBlog: state.newBlog,
         userSpecific: state.userSpecific,
+        hasNextPage: state.hasNextPage,
+        hasPreviousPage: state.hasPreviousPage,
+        currentPage: state.currentPage,
+        nextPage: state.nextPage,
+        previousPage: state.previousPage,
         postBlog,
         getBlog,
         editBlog,
         getSpecific,
-        deleteBlog
+        deleteBlog,
+        getNext,
+        getPrevious
       }}
     >
       {props.children}
