@@ -5,7 +5,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import UserContext from "../context/user/UserContext";
 
 // todo display and submit responses
-const URI = "https://bloggerzz.herokuapp.com/";
+const URI = "https://bloggerzz.herokuapp.com";
 const Response = props => {
   
   const userContext = useContext(UserContext);

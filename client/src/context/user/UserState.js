@@ -6,7 +6,7 @@ import UserReducer from "./UserReducer";
 import UserContext from "./UserContext";
 import { LOGIN_USER, GET_CURRENT_USER, LOGOUT } from "../types";
 
-const URI = 'https://bloggerzz.herokuapp.com/'
+const URI = 'https://bloggerzz.herokuapp.com'
 
 const UserState = props => {
   const initialState = {

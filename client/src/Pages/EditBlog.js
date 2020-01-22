@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import BlogContext from "../context/blog/BlogContext";
 import Axios from "axios";
 
-const URI = "https://bloggerzz.herokuapp.com/";
+const URI = "https://bloggerzz.herokuapp.com";
 const EditBlog = props => {
   const [title, setTitle] = useState("");
   const [lead, setLead] = useState("");

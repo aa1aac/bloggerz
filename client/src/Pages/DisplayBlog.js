@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const URI = "https://bloggerzz.herokuapp.com/";
+const URI = "https://bloggerzz.herokuapp.com";
 class DisplayBlog extends Component {
   constructor(props) {
     super(props);

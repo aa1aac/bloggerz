@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import axios from "axios";
 
-const URI = "https://bloggerzz.herokuapp.com/";
+const URI = "https://bloggerzz.herokuapp.com";
 const Signup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");

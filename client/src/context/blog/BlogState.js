@@ -9,7 +9,7 @@ import BlogContext from "./BlogContext";
 import { GET_BLOGS, GET_USER_SPECIFIFC_BLOG } from "../types";
 
 export const BlogState = props => {
-  const URI = 'https://bloggerzz.herokuapp.com/'
+  const URI = 'https://bloggerzz.herokuapp.com'
   // set an intital state
   const initialState = {
     blogs: [],
