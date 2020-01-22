@@ -9,6 +9,7 @@ import BlogContext from "./BlogContext";
 import { GET_BLOGS, GET_USER_SPECIFIFC_BLOG } from "../types";
 
 export const BlogState = props => {
+  const URI = 'https://bloggerzz.herokuapp.com/'
   // set an intital state
   const initialState = {
     blogs: [],
@@ -29,20 +30,25 @@ export const BlogState = props => {
   const postBlog = async (title, lead, content) => {
     // todo post the blog
 
-    const res = await axios.post("/blog", {
-      title,
-      lead,
-      content: content.split("\n")
-    });
+    const res = await axios.post(
+      `${URI}/api/blog`,
+      {
+        title,
+        lead,
+        content: content.split("\n")
+      }
+    );
     M.toast({ html: res.data.msg });
   };
 
   // get blog functionality
   const getBlog = async () => {
     // get the current blogs
-    const res = await axios.get("/blog");
+    const res = await axios.get(
+      `${URI}/api/blog`
+    );
 
-    console.log(res.data);
+ 
 
     dispatch({ type: GET_BLOGS, payload: res.data });
   };
@@ -50,7 +56,9 @@ export const BlogState = props => {
   const getPrevious = async () => {
     // get the  blogs
 
-    const res = await axios.get(`/blog?page=${state.previousPage}`);
+    const res = await axios.get(
+      `${URI}/api/blog?page=${state.previousPage}`
+    );
 
     dispatch({ type: GET_BLOGS, payload: res.data });
   };
@@ -58,7 +66,9 @@ export const BlogState = props => {
   const getNext = async () => {
     // get the  blogs
 
-    const res = await axios.get(`/blog?page=${state.nextPage}`);
+    const res = await axios.get(
+      `${URI}/api/blog?page=${state.nextPage}`
+    );
 
     dispatch({ type: GET_BLOGS, payload: res.data });
   };
@@ -66,7 +76,9 @@ export const BlogState = props => {
   // get user specific blogs
   const getSpecific = async () => {
     // todo get user specific blog
-    const res = await axios.get("/blog/specific");
+    const res = await axios.get(
+      `${URI}/api/blog/specific`
+    );
 
     dispatch({ type: GET_USER_SPECIFIFC_BLOG, payload: res.data.blogs });
   };
@@ -74,20 +86,25 @@ export const BlogState = props => {
   // edit blogs
   const editBlog = async (title, lead, content, id) => {
     // todo edit the blogs
-    console.log("editBlog");
-    const res = await axios.put(`/blog/${id}`, {
-      title,
-      lead,
-      content: content.split("\n")
-    });
-    console.log(res);
+    
+    const res = await axios.put(
+      `${URI}/api/blog/${id}`,
+      {
+        title,
+        lead,
+        content: content.split("\n")
+      }
+    );
+    
     M.toast({ html: res.data.msg });
   };
 
   const deleteBlog = async id => {
     // todo delete blog
-    const res = await axios.delete(`/blog/${id}`);
-    console.log(res);
+    const res = await axios.delete(
+      `${URI}/api/blog/${id}`
+    );
+
   };
   return (
     <BlogContext.Provider

@@ -1,20 +1,18 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import axios from "axios";
 
-
+const URI = "https://bloggerzz.herokuapp.com/";
 const Signup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [confirm, setConfirm] = useState("");
-  
-  
 
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post("/user/signup", {
+      const res = await axios.post(`${URI}/api/user/signup`, {
         name,
         email,
         password,

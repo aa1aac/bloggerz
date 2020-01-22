@@ -5,8 +5,9 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import UserContext from "../context/user/UserContext";
 
 // todo display and submit responses
-
+const URI = "https://bloggerzz.herokuapp.com/";
 const Response = props => {
+  
   const userContext = useContext(UserContext);
 
   const [comment, setComment] = useState("");
@@ -18,10 +19,13 @@ const Response = props => {
   const onFormSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post(`/response/${props.match.params.id}`, {
-        response: comment
-      });
-      console.log(res.data);
+      const res = await axios.post(
+        `${URI}/api/response/${props.match.params.id}`,
+        {
+          response: comment
+        }
+      );
+     
       if (res.data.msg === "comment successfully added") {
         setComment("");
         fetchResponses();
@@ -35,7 +39,7 @@ const Response = props => {
 
   const fetchResponses = async () => {
     // fetch responses
-    const res = await axios.get(`/response/${props.match.params.id}`);
+    const res = await axios.get(`${URI}/api/response/${props.match.params.id}`);
 
     setResponses(res.data);
   };
@@ -84,7 +88,7 @@ const Response = props => {
         <div className="responses">
           <ul className="collection">
             {responses.map((value, index, array) => {
-              console.log(value);
+              
               return (
                 <li className="collection-item avatar" key={index}>
                   <i className="material-icons circle red">play_arrow</i>

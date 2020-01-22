@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const URI = "https://bloggerzz.herokuapp.com/";
 class DisplayBlog extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,9 @@ class DisplayBlog extends Component {
 
   fetchData = async () => {
     try {
-      const res = await axios.get(`/blog/${this.props.match.params.id}`);
+      const res = await axios.get(
+        `${URI}/api/blog/${this.props.match.params.id}`
+      );
       const dateCreated = await new Date(
         res.data.blog.dateCreated
       ).toDateString();
@@ -35,10 +38,7 @@ class DisplayBlog extends Component {
     this.fetchData();
   }
 
-  fetchComment = async () => {
-    // todo fetch comment
-    console.log("fetch comment");
-  };
+ 
   render() {
     if (this.state.blog && this.state.author) {
       return (
@@ -57,7 +57,10 @@ class DisplayBlog extends Component {
             })}
           </p>
           <hr />
-          <span className="h5"> <b >Published on</b> : {this.state.dateCreated}</span>
+          <span className="h5">
+            {" "}
+            <b>Published on</b> : {this.state.dateCreated}
+          </span>
           <br />
           <br />
 

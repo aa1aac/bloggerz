@@ -6,6 +6,8 @@ import UserReducer from "./UserReducer";
 import UserContext from "./UserContext";
 import { LOGIN_USER, GET_CURRENT_USER, LOGOUT } from "../types";
 
+const URI = 'https://bloggerzz.herokuapp.com/'
+
 const UserState = props => {
   const initialState = {
     user: ""
@@ -15,8 +17,11 @@ const UserState = props => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post("/user/login", { email, password });
-      console.log(res);
+      const res = await axios.post(
+        `${URI}/api/user/login`,
+        { email, password }
+      );
+      
       dispatch({
         type: LOGIN_USER,
         payload: res.data.user.id
@@ -32,7 +37,7 @@ const UserState = props => {
 
   const getUser = async () => {
     try {
-      const res = await axios.get("/user");
+      const res = await axios.get(`${URI}/api/user`);
 
       dispatch({
         type: GET_CURRENT_USER,
@@ -44,7 +49,7 @@ const UserState = props => {
   const logout = () => {
     const date = new Date(Date.now() - 10000);
 
-    // console.log(document.cookie);
+   
     document.cookie = `token=0; expires=${date}`;
     dispatch({ type: LOGOUT });
   };

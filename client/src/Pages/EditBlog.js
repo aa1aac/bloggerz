@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import BlogContext from "../context/blog/BlogContext";
 import Axios from "axios";
 
+const URI = "https://bloggerzz.herokuapp.com/";
 const EditBlog = props => {
   const [title, setTitle] = useState("");
   const [lead, setLead] = useState("");
@@ -18,10 +19,10 @@ const EditBlog = props => {
 
   useEffect(() => {
     const id = props.match.params.id;
-    Axios.get(`/blog/${id}`).then(res => {
+    Axios.get(`${URI}/api/blog/${id}`).then(res => {
       setTitle(res.data.blog.title);
       setLead(res.data.blog.lead);
-      
+
       setContent(res.data.blog.content.join("\n"));
     });
   }, []);

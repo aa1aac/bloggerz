@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
-const config = require("config");
+const config = require("../config");
 
 const User = require("../models/User");
 const isAuth = require("../middleware/isAuth");
@@ -64,12 +64,12 @@ const login = async (req, res) => {
     });
   } else {
     res.json({ msg: "password or username does not match" });
-  }       
+  }
 };
 
 const getUser = (req, res) => {
   // todo get current user and check
-  
+
   res.json({ user: { id: req.payload.id } });
 };
 

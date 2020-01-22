@@ -21,6 +21,9 @@ import Response from "./Pages/Response";
 import PrivateRoute from "./components/Routing/Private";
 import NonPrivateRoute from "./components/Routing/NonPrivate";
 
+
+
+
 function App() {
   useEffect(() => {
     M.AutoInit();
