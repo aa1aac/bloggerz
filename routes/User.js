@@ -11,6 +11,4 @@ router.post("/login", UserController.login); // login route api/user/login      
 
 router.get("/", isAuth, UserController.getUser); // getCurrentUser route api/user/   GET  private
 
-// router.get("/refresh", isAuth, UserController.refresh); // rote api/user/referesh    GET private
-
 module.exports = router;

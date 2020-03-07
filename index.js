@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const config = require("./config");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
 
 const UserRouter = require("./routes/User");
 const BlogRouter = require("./routes/Blog");
@@ -21,7 +20,6 @@ const corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-app.use(cors(corsOptions));
 app.use("/api/user", UserRouter); // routing for user  api/user
 app.use("/api/blog", BlogRouter); // routing for blog  api/blog
 app.use("/api/response", ResponseRouter); // routing for response api/response
@@ -34,3 +32,5 @@ mongoose
   .then(() => console.log("mongo database connected"));
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+
+module.exports = app;
