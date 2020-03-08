@@ -43,11 +43,11 @@ const getBlogs = (req, res) => {
 };
 
 const postBlog = async (req, res) => {
-  // todo no duplicates
-
   const { title, lead, content } = req.body;
-  if (!title && !lead && !content)
+
+  if (!title || !lead || !content)
     return res.json({ msg: "none of the fields can be empty" });
+
   try {
     const blog = await new Blog({
       title,
@@ -55,7 +55,9 @@ const postBlog = async (req, res) => {
       content,
       _author: req.payload.id
     });
+
     await blog.save();
+
     res.json({ msg: "successfully saved the post " });
   } catch (error) {
     res.json({ msg: "some error occured saving the post try again later!" });
@@ -70,7 +72,7 @@ const editBlog = (req, res) => {
 
       if (!title && !lead && !content)
         return res.json({ msg: "none of the fields can be empty" });
- 
+
       blog.title = title;
       blog.lead = lead;
       blog.content = content;
@@ -97,11 +99,10 @@ const deleteBlog = (req, res) => {
 
 const getSpecificBlog = (req, res) => {
   Blog.findById(req.params.id)
-    .then(blog => {   
+    .then(blog => {
       if (!blog) return res.status(404);
       console.log(blog._author);
       User.findOne({ _id: blog._author }, " name _id").then(user => {
-        
         res.json({ blog, author: user });
       });
     })
